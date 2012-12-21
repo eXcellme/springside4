@@ -56,11 +56,14 @@ public class JettyFactory {
 		WebAppContext context = (WebAppContext) server.getHandler();
 		List<String> jarNameExprssions = Lists.newArrayList(".*/jstl-[^/]*\\.jar$", ".*/.*taglibs[^/]*\\.jar$");
 		for (String jarName : jarNames) {
+			System.out.println("jarName is "+ jarName);
 			jarNameExprssions.add(".*/" + jarName + "-[^/]*\\.jar$");
 		}
+		System.out.println(jarNameExprssions);
 
 		context.setAttribute("org.eclipse.jetty.server.webapp.ContainerIncludeJarPattern",
 				StringUtils.join(jarNameExprssions, '|'));
+		// TODO 上面这个方法是在通过正则表达式设置jetty需要加载的jar包吗 
 
 	}
 
